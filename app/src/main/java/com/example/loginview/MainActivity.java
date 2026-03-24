@@ -1,7 +1,9 @@
 package com.example.loginview;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         signIn.setOnClickListener(v-> {
-            Intent intentLogin = new Intent( MainActivity.this, ProfileActivity.class);
-
             String inputEmail=email.getText().toString();
             String inputPW=pw.getText().toString();
 
@@ -49,8 +49,23 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Vui lòng nhập đầy đủ thông tin", Toast.LENGTH_SHORT).show();
                 return;
             }
-            intentLogin.putExtra("email", inputEmail);
-            startActivity(intentLogin);
+
+            // giả db
+            SharedPreferences dbFake = getSharedPreferences("confirmLogin", MODE_PRIVATE);
+            String savedEmail=dbFake.getString("reg_email", "");
+            String savedPW=dbFake.getString("reg_pw", "");
+
+            if(inputEmail.equals(savedEmail) && inputPW.equals(savedPW)){
+                Intent intentLogin = new Intent( MainActivity.this, ProfileActivity.class);
+                intentLogin.putExtra("email", inputEmail);
+                intentLogin.putExtra("name", dbFake.getString("reg_name",""));
+                startActivity(intentLogin);
+                finish();
+            }
+            else {
+                Toast.makeText(this, "Vui lòng nhập đúng email và mật khẩu", Toast.LENGTH_SHORT).show();
+            }
+
         });
     }
 }

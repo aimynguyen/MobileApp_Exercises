@@ -1,6 +1,7 @@
 package com.example.loginview;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,7 +32,6 @@ public class RegisterActivity extends AppCompatActivity {
         if (pwTuLogin != null) pw.setText(pwTuLogin);
 
         create.setOnClickListener(v-> {
-
             String matKhau = pw.getText().toString();
             String xacNhan = confirm.getText().toString();
 
@@ -40,11 +40,22 @@ public class RegisterActivity extends AppCompatActivity {
                 confirm.setError("sai mat khau roi be yeu oi!");
                 return;
             }
-            Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
-            intent.putExtra("email", email.getText().toString());
-            intent.putExtra("pw", pw.getText().toString());
-            startActivity(intent);
+//            Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
+//            intent.putExtra("name", name.getText().toString());
+//            intent.putExtra("email", email.getText().toString());
+//            intent.putExtra("pw", pw.getText().toString());
+
+            SharedPreferences dbFake=getSharedPreferences("confirmLogin",MODE_PRIVATE);
+            SharedPreferences.Editor editor = dbFake.edit();
+            editor.putString("reg_name", name.getText().toString());
+            editor.putString("reg_email",email.getText().toString());
+            editor.putString("reg_pw",pw.getText().toString());
+            editor.apply();
+
+            Toast.makeText(this, "đăng ký thành công!", Toast.LENGTH_SHORT).show();
             finish();
+//            startActivity(intent);
+//            finish();
         });
 
     }

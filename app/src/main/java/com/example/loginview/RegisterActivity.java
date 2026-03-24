@@ -8,8 +8,10 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class RegisterActivity extends AppCompatActivity {
-    EditText name, email, pw, confirm;
+    TextInputEditText name, email, pw, confirm;
     Button create;
 
     @Override protected void onCreate(Bundle savedInstanceState){

@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.textfield.TextInputEditText;
+
 public class ProfileActivity extends AppCompatActivity {
     TextView name;
-    EditText name1, email, address, url, description;
+    TextInputEditText name1, email, address, url, description;
     Button save, logout;
 
     @Override protected void onCreate(Bundle saveInstanceState){

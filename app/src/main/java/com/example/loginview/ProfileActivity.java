@@ -30,19 +30,12 @@ public class ProfileActivity extends AppCompatActivity {
         save=findViewById(R.id.button);
         logout=findViewById(R.id.button2);
 
-        name.setText(getIntent().toString());
-        SharedPreferences share=getSharedPreferences("hoso", MODE_PRIVATE);
-        String saveDescription = share.getString("mota","");
+        name.setText(getIntent().getStringExtra("login_name"));
+        name1.setText(getIntent().getStringExtra("login_name"));
+        email.setText(getIntent().getStringExtra("login_email"));
 
-        description.setText(saveDescription);
 
         save.setOnClickListener(v->{
-            SharedPreferences.Editor editor = share.edit();
-
-            editor.putString("mota",description.getText().toString());
-            editor.apply();
-
-
             Toast.makeText(this, "đã lưu description", Toast.LENGTH_SHORT).show();
         });
 

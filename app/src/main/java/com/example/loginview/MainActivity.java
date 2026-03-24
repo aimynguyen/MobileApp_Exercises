@@ -57,8 +57,8 @@ public class MainActivity extends AppCompatActivity {
 
             if(inputEmail.equals(savedEmail) && inputPW.equals(savedPW)){
                 Intent intentLogin = new Intent( MainActivity.this, ProfileActivity.class);
-                intentLogin.putExtra("email", inputEmail);
-                intentLogin.putExtra("name", dbFake.getString("reg_name",""));
+                intentLogin.putExtra("login_email", inputEmail);
+                intentLogin.putExtra("login_name", dbFake.getString("reg_name",""));
                 startActivity(intentLogin);
                 finish();
             }

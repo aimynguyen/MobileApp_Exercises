@@ -36,8 +36,8 @@ public class RegisterActivity extends AppCompatActivity {
             String xacNhan = confirm.getText().toString();
 
             if (!matKhau.equals(xacNhan)) {
-                Toast.makeText(RegisterActivity.this, "Mật khẩu xác nhận không khớp!", Toast.LENGTH_SHORT).show();
-                confirm.setError("sai mat khau roi be yeu oi!");
+                Toast.makeText(RegisterActivity.this, "Mật khẩu không khớp!", Toast.LENGTH_SHORT).show();
+                confirm.setError("Sai mat khau xac nhan roi be yeu oi!");
                 return;
             }
 //            Intent intent = new Intent(RegisterActivity.this, ProfileActivity.class);
@@ -52,7 +52,7 @@ public class RegisterActivity extends AppCompatActivity {
             editor.putString("reg_pw",pw.getText().toString());
             editor.apply();
 
-            Toast.makeText(this, "đăng ký thành công!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Đăng ký thành công!", Toast.LENGTH_SHORT).show();
             finish();
 //            startActivity(intent);
 //            finish();
